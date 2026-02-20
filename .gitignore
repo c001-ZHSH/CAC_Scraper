@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Build and Dist
+build/
+dist/
+*.spec
+
+# Application specific
+static/downloads/
+*.html
+
+# OS specific
+.DS_Store
