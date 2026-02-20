@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大學申請入學分則統整系統</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>大學申請入學分則統整系統<span class="blinking-cursor">_</span></h1>
+            <p class="subtitle">自動抓取、解析大考中心校系分則，一鍵匯出表格</p>
+        </header>
+
+        <section class="url-input-section card">
+            <h2>步驟 1：貼上大考中心分則查詢網址</h2>
+            <div class="input-group">
+                <input type="url" id="cacUrl"
+                    placeholder="例如：https://www.cac.edu.tw/apply115/system/ColQry_115xappLyfOrStu_Azd5gP29/TotalGsdShow.htm"
+                    required>
+                <button id="fetchUnivBtn" class="primary-btn">載入大學列表</button>
+            </div>
+            <div id="urlError" class="error-msg hidden"></div>
+        </section>
+
+        <section id="universitySelection" class="selection-section card hidden">
+            <div class="selection-header">
+                <h2>步驟 2：選擇欲爬取的大學</h2>
+                <div class="actions">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="selectAll">
+                        <span class="checkmark"></span>
+                        全選所有大學
+                    </label>
+                    <span class="count-badge" id="selectedCount">已選擇: 0</span>
+                </div>
+            </div>
+
+            <div class="grid-list" id="univList">
+                <!-- University items will be injected here via JS -->
+            </div>
+
+            <div class="action-bar">
+                <button id="startScrapingBtn" class="primary-btn pulse disabled" disabled>開始爬取資料</button>
+            </div>
+        </section>
+
+        <section id="progressSection" class="progress-section card hidden">
+            <h2>處理進度</h2>
+            <div class="progress-container">
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                </div>
+                <div class="progress-stats">
+                    <span id="progressText">準備中...</span>
+                    <span id="progressPercentage">0%</span>
+                </div>
+            </div>
+            <div class="log-container" id="logContainer">
+                <!-- Logs will appear here -->
+            </div>
+
+            <div id="downloadSection" class="action-bar hidden">
+                <button id="downloadBtn" class="success-btn">⬇️ 下載統整表 (CSV)</button>
+            </div>
+        </section>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+
+</html>
